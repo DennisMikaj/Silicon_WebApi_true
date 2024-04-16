@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Silicon_WebApi_true.Contexts;
+using Silicon_WebApi_true.Dtos;
+using Silicon_WebApi_true.Entities;
+using Silicon_WebApi_true.Models;
 
 namespace Silicon_WebApi_true.Controllers
 {
@@ -25,6 +28,33 @@ namespace Silicon_WebApi_true.Controllers
 				return Ok(course);
 			}
 			return NotFound();
-		} 
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> CreateOne(CourseDto model)
+		{
+			if (ModelState.IsValid)
+			{
+				var courseEntity = new CourseEntity
+				{
+					Title = model.Title,
+					OriginalPrice = model.OriginalPrice,
+					DiscountPrice = model.DiscountPrice,
+					Hours = model.Hours,
+					IsBestseller = model.IsBestseller,
+					LikesInNumbers = model.LikesInNumbers,
+					LikesInPercent = model.LikesInPercent,
+					Author = model.Author,
+				};
+
+				_context.Courses.Add(courseEntity);
+				await _context.SaveChangesAsync();
+
+
+				return Created("", (Course)courseEntity);
+			}
+			return BadRequest();
+		}
+
 	}
 }

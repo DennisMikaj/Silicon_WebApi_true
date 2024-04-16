@@ -15,9 +15,9 @@ public class SubscriberController(DataContext context) : ControllerBase
 
 	#region CREATE
 	[HttpPost]
-	public async Task<IActionResult> Create([FromBody] SubscriberDto subscriberDto)
+	public async Task<IActionResult> Create(string email)
 	{
-		var email = subscriberDto.Email;
+		//var email = subscriberDto.Email;
 
 		if (string.IsNullOrEmpty(email))
 		{

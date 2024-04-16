@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Silicon_WebApi_true.Models;
+using Silicon_WebApi_true.Dtos;
 
 namespace Silicon_WebApi_true.Entities;
 
@@ -17,4 +19,6 @@ public class CourseEntity
 	public decimal DiscountPrice { get; set; }
 	public decimal LikesInPercent { get; set; }
 	public decimal LikesInNumbers { get; set; }
+
+
 }
